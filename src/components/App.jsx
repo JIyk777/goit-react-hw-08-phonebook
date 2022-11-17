@@ -1,10 +1,13 @@
-import { ContactForm } from './add_new_contact/ContactForm';
-import { ContactsList } from './create_all_contacts_list/ContactsList';
-import { Filter } from './filter/Filter';
+import { AuthNav } from './appBar/authNav/AuthNav';
 import { Box } from 'components/box/Box';
+import { Phonebook } from './phonebook/Phonebook';
+import { RegisterForm } from './phonebook/registerForm/RegisterForm';
+import { StartPage } from './phonebook/startPage/StartPage';
+import { LoginForm } from './phonebook/logInForm/LoginForm';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operations';
+import { Route, Routes } from 'react-router-dom';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -24,11 +27,13 @@ export const App = () => {
       bg="#F0E68C"
       boxShadow="0px 0px 40px 0px #9AA0AD"
     >
-      <h1>Phonebook</h1>
-      <ContactForm></ContactForm>
-      <h2>Contacts</h2>
-      <Filter></Filter>
-      <ContactsList></ContactsList>
+      <AuthNav></AuthNav>
+      <Routes>
+        <Route path="/" element={<StartPage />}></Route>
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/contacts" element={<Phonebook />}></Route>
+      </Routes>
     </Box>
   );
 };
