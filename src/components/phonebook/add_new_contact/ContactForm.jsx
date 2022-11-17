@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Box } from 'components/box/Box';
 import { FormAddBtn, FormInput, FormLabelText } from './ContactFormStyle';
-import { addContact } from 'redux/operations';
+import { addContact } from 'redux/contacts/contactsOperations';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getContactsValue } from 'redux/contactsSelector';
+import { getContactsValue } from 'redux/contacts/contactsSelector';
 
 export const ContactForm = () => {
   const contacts = useSelector(getContactsValue);

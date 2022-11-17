@@ -1,11 +1,14 @@
 import React from 'react';
 import { Box } from 'components/box/Box';
 import { ContactDelBtn } from './ContactsListStyle';
-import { removeContactByID } from 'redux/operations';
+import { removeContactByID } from 'redux/contacts/contactsOperations';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getContactsValue, getFilterValue } from 'redux/contactsSelector';
+import {
+  getContactsValue,
+  getFilterValue,
+} from 'redux/contacts/contactsSelector';
 
 export const ContactsList = () => {
   const filter = useSelector(getFilterValue);
