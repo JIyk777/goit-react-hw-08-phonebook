@@ -1,6 +1,5 @@
 import { AppBar } from './AppBar';
 import { Box } from 'components/box/Box';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
