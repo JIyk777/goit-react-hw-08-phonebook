@@ -6,7 +6,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
@@ -42,3 +42,5 @@ export const RegisterForm = () => {
     </RegisterFormStyle>
   );
 };
+
+export default RegisterForm;

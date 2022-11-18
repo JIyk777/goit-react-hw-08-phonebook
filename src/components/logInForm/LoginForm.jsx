@@ -1,8 +1,12 @@
-import { LoginFormStyle, LoginFormLabelStyle } from './LoginFormStyle';
+import {
+  LoginFormStyle,
+  LoginFormLabelStyle,
+  LoginFormBtn,
+} from './LoginFormStyle';
 import { useDispatch } from 'react-redux';
 import { login } from 'redux/auth/authOperations';
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = e => {
     e.preventDefault();
@@ -27,7 +31,9 @@ export const LoginForm = () => {
         <span>Password</span>
         <input type="password" name="password" />
       </LoginFormLabelStyle>
-      <button type="submit">Submit</button>
+      <LoginFormBtn type="submit">Log In</LoginFormBtn>
     </LoginFormStyle>
   );
 };
+
+export default LoginForm;

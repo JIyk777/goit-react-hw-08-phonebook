@@ -9,7 +9,7 @@ export const AuthNavLinkStyle = styled(Link)`
   &:focus {
     color: #2e8b57;
   }
-  padding: 2px;
+  padding: 5px;
   border-radius: 30px;
   margin-top: 16px;
   border: 0;
