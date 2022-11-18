@@ -40,7 +40,7 @@ export const ContactsList = () => {
             key={contact.id}
           >
             <span>{contact.name}</span>
-            <span>{contact.phone}</span>
+            <span>{contact.number}</span>
             <ContactDelBtn
               type="button"
               onClick={() => dispatch(removeContactByID(contact.id))}

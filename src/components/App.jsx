@@ -1,21 +1,28 @@
-import { AppBar } from './appBar/AppBar';
+import { AppBar } from './AppBar';
 import { Box } from 'components/box/Box';
-import { Phonebook } from './phonebook/Phonebook';
-import { RegisterForm } from './phonebook/registerForm/RegisterForm';
-import { StartPage } from './phonebook/startPage/StartPage';
-import { LoginForm } from './phonebook/logInForm/LoginForm';
-import { useDispatch } from 'react-redux';
+import { Phonebook } from './Phonebook';
+import { RegisterForm } from './registerForm/RegisterForm';
+
+import { LoginForm } from './logInForm/LoginForm';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchContacts } from 'redux/contacts/contactsOperations';
 import { Route, Routes } from 'react-router-dom';
-import PrivateRoute from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
+import { RestrictedRoute } from './RestrictedRoute';
+import { refreshUser } from 'redux/auth/authOperations';
+import { getAuthRefresh } from 'redux/auth/authSelector';
 
 export const App = () => {
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
-  return (
+  const isRefreshing = useSelector(getAuthRefresh);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
     <Box
       display="flex"
       flexDirection="column"
@@ -30,13 +37,27 @@ export const App = () => {
     >
       <AppBar></AppBar>
       <Routes>
-        <Route path="/" element={<StartPage />}></Route>
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/login" element={<LoginForm />} />
-        {/* <Route path="/contacts" element={<Phonebook />}></Route> */}
-        <PrivateRoute path="/contacts">
-          <Phonebook />
-        </PrivateRoute>
+        <Route
+          path="/register"
+          element={
+            <RestrictedRoute
+              redirectTo="/contacts"
+              component={<RegisterForm />}
+            />
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute redirectTo="/contacts" component={<LoginForm />} />
+          }
+        />
+        <Route
+          path="/contacts"
+          element={
+            <PrivateRoute redirectTo="/login" component={<Phonebook />} />
+          }
+        />
       </Routes>
     </Box>
   );

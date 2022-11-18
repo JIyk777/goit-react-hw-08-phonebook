@@ -1,7 +1,9 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
+import { getAuthName } from 'redux/auth/authSelector';
 
 export const UserMenu = () => {
+  const name = useSelector(getAuthName);
   const dispatch = useDispatch();
 
   const handleExit = () => {
@@ -9,7 +11,7 @@ export const UserMenu = () => {
   };
   return (
     <div>
-      <p>Name</p>
+      <p>{name}</p>
       <button type="button" onClick={handleExit}>
         Exit
       </button>

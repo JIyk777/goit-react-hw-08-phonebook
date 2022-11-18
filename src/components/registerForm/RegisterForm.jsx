@@ -1,4 +1,8 @@
-import { RegisterFormStyle, RegisterFormLabelStyle } from './RegisterFormStyle';
+import {
+  RegisterFormStyle,
+  RegisterFormLabelStyle,
+  RegisterFormBtn,
+} from './RegisterFormStyle';
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/authOperations';
 
@@ -34,7 +38,7 @@ export const RegisterForm = () => {
         <span>Password</span>
         <input type="password" name="password" />
       </RegisterFormLabelStyle>
-      <button type="submit">Submit</button>
+      <RegisterFormBtn type="submit">To register</RegisterFormBtn>
     </RegisterFormStyle>
   );
 };

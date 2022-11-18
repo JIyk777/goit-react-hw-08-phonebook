@@ -21,7 +21,7 @@ export const ContactForm = () => {
           addContact({
             name: Name,
 
-            phone: Number,
+            number: Number,
           })
         );
   };
